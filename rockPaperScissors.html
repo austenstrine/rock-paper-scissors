@@ -4,13 +4,12 @@
 <head>
     <!-- I clearly copied and pasted some of this...check for over complexity please!-->
     <style>
-        html,
-        body {
-            min-height: 100%;
-        }
-
-        body {
-            position: relative;
+        html, body {
+            /*position: relative;*/
+            height: 100%;
+            padding: 0px;
+            border: 0px;
+            margin: 0px;
         }
 
         .overlay {
@@ -20,7 +19,7 @@
             z-index: 10;
             top: 0;
             left: 0;
-            background-color: rgba(0, 55, 55, 0.96);
+            background-color: rgb(0, 55, 55);
             overflow-x: hidden;
             transition: 0.25s;
         }
@@ -32,10 +31,20 @@
             font-size: 36px;
             margin-left: 50px;
         }
+        .buttonContainer {
+          /*text-align: center;*/
+          width: 100%;
+          min-height: 100%;
 
-        .greybutton {
-            background-color: rgb(175, 175, 175);
-            background: linear-gradient(to bottom right, rgba(150, 150, 150, .5), rgba(200, 200, 200, .5))
+        }
+        .button {
+          width: 33%;
+          height: 100%;
+          margin: 0px;
+          padding: 0px;
+          border: 0px;
+          background-color: #1e724f;
+          display: inline-block;
         }
     </style>
 </head>
@@ -46,16 +55,16 @@
 
         <div class="closebtn">
 
-            <button type="button" onclick="clickToStartNewGame()" class="greybutton">Start New Game!</button>
+            <button type="button" onclick="clickToStartNewGame()">Start New Game!</button>
             <!--<a href="javascript:void(0)" class="closebtn" id="newgame">Start New Game!</a>-->
         </div>
 
     </div>
-
-    <button type="button" id="rck">Rock</button>
-    <button type="button" id="ppr">Paper</button>
-    <button type="button" id="szr">Scissors</button>
-    <button type="button" id="go">Go!</button>
+  <div class="buttonContainer">
+    <button type="button" id="rck" class="button">Rock</button><!--
+ --><button type="button" id="ppr" class="button">Paper</button><!--
+ --><button type="button" id="szr" class="button">Scissors</button>
+  </div>
     <script>
         var pOneRck = 0;
         var pOnePpr = 0;
@@ -182,7 +191,7 @@
             } else if (pTwoScore == 7) {
                 playerTwoVictory();
             }
-        }
+        };
         var rockButton = document.getElementById("rck");
         var paperButton = document.getElementById("ppr");
         var scissorsButton = document.getElementById("szr");
@@ -191,19 +200,22 @@
             pOnePpr = 0;
             pOneSzr = 1;
             console.log("pOneSzr");
-        }, function newRound())
+            newRound();
+        });
         paperButton.addEventListener("click", function() {
             pOneRck = 0;
             pOnePpr = 1;
             pOneSzr = 0;
             console.log("pOnePpr");
-        }, function newRound())
+            newRound();
+        });
         rockButton.addEventListener("click", function() {
             pOneRck = 1;
             pOnePpr = 0;
             pOneSzr = 0;
             console.log("pOneRck");
-        }, function newRound())
+            newRound();
+        });
     </script>
 </body>
 
