@@ -10,8 +10,13 @@
             padding: 0px;
             border: 0px;
             margin: 0px;
+            background-color: rgb(75, 75, 75);
         }
-
+        div {
+          margin: 0px;
+          padding: 0px;
+          border: 0px;
+        }
         .overlay {
             height: 100%;
             width: 100%;
@@ -34,17 +39,32 @@
         .buttonContainer {
           /*text-align: center;*/
           width: 100%;
-          min-height: 100%;
+          height: 80%;
 
         }
-        .button {
-          width: 33%;
-          height: 100%;
+        button {
+          width: 33.3%;
+          height: inherit;
           margin: 0px;
           padding: 0px;
-          border: 0px;
+          border-width: 2px;
+          border-radius: 12px;
+          border-color: rgb(25, 80, 80);
+          border-top-left-radius: 0px;
+          border-bottom-right-radius: 0px;
           background-color: #1e724f;
           display: inline-block;
+        }
+        .txtBox {
+          position: relative;
+          height: 20%
+          top: 0;
+          text-align: center;
+          border-width: 2px;
+          border-radius: 5px;
+          border-color: rgba(25, 80, 80, 1);
+          background-color: #1e724f;
+          margin: 0px;
         }
     </style>
 </head>
@@ -53,18 +73,21 @@
     <!--Another complexity check please!-->
     <div id="titleOverlay" class="overlay">
 
-        <div class="closebtn">
+        <div>
 
             <button type="button" onclick="clickToStartNewGame()">Start New Game!</button>
             <!--<a href="javascript:void(0)" class="closebtn" id="newgame">Start New Game!</a>-->
         </div>
 
     </div>
-  <div class="buttonContainer">
-    <button type="button" id="rck" class="button">Rock</button><!--
- --><button type="button" id="ppr" class="button">Paper</button><!--
- --><button type="button" id="szr" class="button">Scissors</button>
-  </div>
+    <p class="txtBox" id="txtBox">
+      Begin by clicking any of the buttons below!
+    </p>
+  <div class="buttonContainer"><!--
+ --><button type="button" id="rck">Rock</button><!--
+ --><button type="button" id="ppr">Paper</button><!--
+ --><button type="button" id="szr">Scissors</button><!--
+--></div>
     <script>
         var pOneRck = 0;
         var pOnePpr = 0;
