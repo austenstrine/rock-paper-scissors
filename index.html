@@ -13,7 +13,7 @@
             margin: 0px;
             background-color: rgb(0, 55, 55);
             color: white;
-            text-shadow: 0px 0px 6px rgb(0, 0, 0);
+            text-shadow: 0px 0px 10px rgb(0, 0, 0);
             font-family: Tahoma, Tahoma, sans-serif;
             letter-spacing: 2px;
         }
@@ -31,7 +31,7 @@
             left: 0;
             background-color: rgb(0, 55, 55);
             overflow-x: hidden;
-            transition: 0.25s;
+            transition: 0.20s;
         }
 
         .overlay .closebtn {
@@ -41,10 +41,89 @@
             margin-left: 50px;
         }
 
+        .nGOverlay {
+          height: 0;
+          width: 100%;
+          position: fixed;
+          z-index: 20;
+          top: 0;
+          background-color: rgb(0, 35, 35);
+          overflow-x: hidden;
+          transition: 0.05s;
+        }
+
+        .nGInnerOverlay {
+          display: block;
+          position: absolute;
+          top: 4px;
+          bottom: 4px;
+          right: 4px;
+          left: 4px;
+          height: calc(100% - 8px);
+          width: calc(100% - 8px);
+          background-color: rgb(0, 55, 55);
+          z-index: 21;
+        }
+
+        .confirmYesButton{
+          position: absolute;
+          float: none;
+          left:20vmin;
+          top: 20vmin;
+          width: calc(20% - 12px);
+          height: calc(10% - 6px);
+          margin: 0px;
+          padding: 3vmin;
+          padding-bottom: 6vmin;
+          border-style: outset;
+          border-width: 3px;
+          border-radius: 12px;
+          border-color: rgb(45, 100, 100);
+          border-top-left-radius: 0px;
+          border-bottom-right-radius: 0px;
+          background-color: rgb(10, 65, 65);
+          color: inherit;
+          text-shadow: inherit;
+          text-align: center;
+          font-family: inherit;
+          font-size: 4.75vmin;
+          letter-spacing: inherit;
+        }
+        .confirmNoButton{
+          position: absolute;
+          float: none;
+          right:20vmin;
+          top: 20vmin;
+          width: calc(20% - 12px);
+          height: calc(10% - 6px);
+          margin: 0px;
+          padding: 3vmin;
+          padding-bottom: 6vmin;
+          border-style: outset;
+          border-width: 3px;
+          border-radius: 12px;
+          border-color: rgb(45, 100, 100);
+          border-top-left-radius: 0px;
+          border-bottom-right-radius: 0px;
+          background-color: rgb(10, 65, 65);
+          color: inherit;
+          text-shadow: inherit;
+          text-align: center;
+          font-family: inherit;
+          font-size: 4.75vmin;
+          letter-spacing: inherit;
+        }
+
+        .newGameTxt{
+          text-align: center;
+          text-shadow: inherit;
+          font-size: 7vmin;
+        }
+
         .buttonContainer {
             /*text-align: center;*/
             width: 100%;
-            height: 90%;
+            height: 70.5%;
             color: inherit;
             text-shadow: inherit;
             font-family: inherit;
@@ -72,23 +151,25 @@
             text-shadow: inherit;
             text-align: center;
             font-family: inherit;
-            font-size: 22px;
+            font-size: 7vmin;
             letter-spacing: inherit;
         }
 
         .txtBoxContainer {
             position: absolute;
             width: 100%;
-            height: 10%;
+            height: 25.5%;
             top: 0;
         }
 
         .txtBox {
             position: relative;
             float: left;
-            width: calc(50% - 2px);
-            height: calc(100% - 2px);
+            width: calc(50% - 10px);
+            height: calc(100% - 10px);
+            padding: 4px;
             text-align: center;
+            font-size: 4.75vmin;
             border-width: 1px;
             border-style: outset;
             border-radius: 5px;
@@ -104,14 +185,21 @@
     <div id="titleOverlay" class="overlay">
         <div><button type="button" onclick="clickToStartNewGame()">Start New Game!</button></div>
     </div>
+    <div id="newGameOverlay" class="nGOverlay">
+        <div class="nGInnerOverlay">
+          <div class="newGameTxt">New Game?</div>
+          <div class="confirmYesButton" id="yGame">Yes</div>
+          <div class="confirmNoButton" id="nGame">No</div>
+        </div>
+    </div>
     <div class="txtBoxContainer">
         <div class="txtBox" id="txtBox2">No score yet!</div>
         <div class="txtBox" id="txtBox">Begin by clicking any of the buttons below!</div>
     </div>
     <div class="buttonContainer">
-        <div class="button" id="rck">Rock<img src="http://llerrah.com/images/large_rock_in_grass_lg_clr_me.gif" alt="Smashes Scissors and is Covered by Paper"style="width:100%;height:33.3%;"></div>
-        <div class="button" id="ppr">Paper<img src="http://img06.deviantart.net/5b4a/i/2012/284/b/a/old_paper_texture_unsigned_by_meridiann-d5hh9a2.png" alt="Covers Rock and is Cut by Scissors"style="width:100%;height:33.3%;"></div>
-        <div class="button" id="szr">Scissors<img src="https://chairish-prod.global.ssl.fastly.net/image/product/master/950674e0-f7f2-4611-a23d-44db95cf47c9" alt="Cuts Paper and is Smashed by Rock"style="width:100%;height:33.3%;"></div>
+        <div class="button" id="rck">Rock<img src="http://llerrah.com/images/large_rock_in_grass_lg_clr_me.gif" alt="Smashes Scissors and is Covered by Paper"style="width:100%;height:50%;"></div>
+        <div class="button" id="ppr">Paper<img src="http://img06.deviantart.net/5b4a/i/2012/284/b/a/old_paper_texture_unsigned_by_meridiann-d5hh9a2.png" alt="Covers Rock and is Cut by Scissors"style="width:100%;height:50%;"></div>
+        <div class="button" id="szr">Scissors<img src="https://chairish-prod.global.ssl.fastly.net/image/product/master/950674e0-f7f2-4611-a23d-44db95cf47c9" alt="Cuts Paper and is Smashed by Rock"style="width:100%;height:50%;"></div>
     </div>
     <script>
         var pOneRck = 0;
@@ -126,19 +214,22 @@
         var pTwoScore = 0;
         var triggerTitleOverlay = function() {
             document.getElementById("titleOverlay").style.width = "100%";
+            document.getElementById("newGameOverlay").style.height = "0";
         };
         var clickToStartNewGame = function() {
-            var confirmNewGame = window.confirm("New game?");
-            console.log(confirmNewGame);
-            if (confirmNewGame == true) {
-                document.getElementById("titleOverlay").style.width = "0";
-                pOneScore = 0;
-                pTwoScore = 0;
-                document.getElementById("txtBox").innerHTML = "Let's go!"
-            } else {
-                triggerTitleOverlay();
-            }
+            document.getElementById("newGameOverlay").style.height = "50%";
+          };
+        var confirmYes = function(){
+          document.getElementById("newGameOverlay").style.height = "0";
+          document.getElementById("titleOverlay").style.width = "0";
+          document.getElementById("txtBox").innerHTML = "Let's go!"
+          pOneScore = 0;
+          pTwoScore = 0;
         };
+        var confirmNo = function(){
+          triggerTitleOverlay();
+        };
+
         var playerOneVictory = function() {
             document.getElementById("txtBox2").innerHTML = "Your score is " + pOneScore + ". The opponent's score is " + pTwoScore + ". You won!";
             clickToStartNewGame();
@@ -241,9 +332,17 @@
                 playerTwoVictory();
             }
         };
+        var yesNewGame = document.getElementById("yGame");
+        var noNewGame = document.getElementById("nGame");
         var rockButton = document.getElementById("rck");
         var paperButton = document.getElementById("ppr");
         var scissorsButton = document.getElementById("szr");
+        yesNewGame.addEventListener("click", function() {
+          confirmYes();
+        });
+        noNewGame.addEventListener("click", function() {
+          confirmNo();
+        });
         scissorsButton.addEventListener("click", function() {
             pOneRck = 0;
             pOnePpr = 0;
