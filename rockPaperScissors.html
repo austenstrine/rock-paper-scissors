@@ -2,27 +2,32 @@
 <html>
 
 <head>
-    <!-- I clearly copied and pasted some of this...check for over complexity please!-->
     <style>
-        html, body {
+        html,
+        body {
             /*position: relative;*/
             height: 100%;
+            width: 100%;
             padding: 0px;
             border: 0px;
             margin: 0px;
-            background-color: rgb(75, 75, 75);
+            background-color: rgb(0, 55, 55);
+            color: white;
+            text-shadow: 0px 0px 6px rgb(0, 0, 0);
+            font-family: Tahoma, Tahoma, sans-serif;
+            letter-spacing: 2px;
         }
+
         div {
-          margin: 0px;
-          padding: 0px;
-          border: 0px;
+            margin: 0px;
+            padding: 0px;
         }
+
         .overlay {
             height: 100%;
             width: 100%;
             position: fixed;
             z-index: 10;
-            top: 0;
             left: 0;
             background-color: rgb(0, 55, 55);
             overflow-x: hidden;
@@ -31,63 +36,83 @@
 
         .overlay .closebtn {
             position: absolute;
-            top: 0;
             right: 25px;
             font-size: 36px;
             margin-left: 50px;
         }
-        .buttonContainer {
-          /*text-align: center;*/
-          width: 100%;
-          height: 80%;
 
+        .buttonContainer {
+            /*text-align: center;*/
+            width: 100%;
+            height: 90%;
+            color: inherit;
+            text-shadow: inherit;
+            font-family: inherit;
+            letter-spacing: inherit;
+            bottom: 0;
+            position: absolute;
         }
+
+        .button,
         button {
-          width: 33.3%;
-          height: inherit;
-          margin: 0px;
-          padding: 0px;
-          border-width: 2px;
-          border-radius: 12px;
-          border-color: rgb(25, 80, 80);
-          border-top-left-radius: 0px;
-          border-bottom-right-radius: 0px;
-          background-color: #1e724f;
-          display: inline-block;
+            position: relative;
+            float: left;
+            width: calc(33.33% - 18px);
+            height: calc(100% - 18px);
+            margin: 0px;
+            padding: 6px;
+            border-style: outset;
+            border-width: 3px;
+            border-radius: 12px;
+            border-color: rgb(45, 100, 100);
+            border-top-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+            background-color: rgb(10, 65, 65);
+            color: inherit;
+            text-shadow: inherit;
+            text-align: center;
+            font-family: inherit;
+            font-size: 22px;
+            letter-spacing: inherit;
         }
+
+        .txtBoxContainer {
+            position: absolute;
+            width: 100%;
+            height: 10%;
+            top: 0;
+        }
+
         .txtBox {
-          position: relative;
-          height: 20%
-          top: 0;
-          text-align: center;
-          border-width: 2px;
-          border-radius: 5px;
-          border-color: rgba(25, 80, 80, 1);
-          background-color: #1e724f;
-          margin: 0px;
+            position: relative;
+            float: left;
+            width: calc(50% - 2px);
+            height: calc(100% - 2px);
+            text-align: center;
+            border-width: 1px;
+            border-style: outset;
+            border-radius: 5px;
+            border-color: rgb(45, 100, 100);
+            background-color: rgb(10, 65, 65);
+            font-family: inherit;
+            letter-spacing: inherit;
         }
     </style>
 </head>
 
 <body>
-    <!--Another complexity check please!-->
     <div id="titleOverlay" class="overlay">
-
-        <div>
-
-            <button type="button" onclick="clickToStartNewGame()">Start New Game!</button>
-            <!--<a href="javascript:void(0)" class="closebtn" id="newgame">Start New Game!</a>-->
-        </div>
-
+        <div><button type="button" onclick="clickToStartNewGame()">Start New Game!</button></div>
     </div>
-    <p class="txtBox" id="txtBox">
-      Begin by clicking any of the buttons below!
-    </p>
-  <div class="buttonContainer"><!--
- --><button type="button" id="rck">Rock</button><!--
- --><button type="button" id="ppr">Paper</button><!--
- --><button type="button" id="szr">Scissors</button><!--
---></div>
+    <div class="txtBoxContainer">
+        <div class="txtBox" id="txtBox2">No score yet!</div>
+        <div class="txtBox" id="txtBox">Begin by clicking any of the buttons below!</div>
+    </div>
+    <div class="buttonContainer">
+        <div class="button" id="rck">Rock<img src="http://llerrah.com/images/large_rock_in_grass_lg_clr_me.gif" alt="Smashes Scissors and is Covered by Paper"style="width:100%;height:33.3%;"></div>
+        <div class="button" id="ppr">Paper<img src="http://img06.deviantart.net/5b4a/i/2012/284/b/a/old_paper_texture_unsigned_by_meridiann-d5hh9a2.png" alt="Covers Rock and is Cut by Scissors"style="width:100%;height:33.3%;"></div>
+        <div class="button" id="szr">Scissors<img src="https://chairish-prod.global.ssl.fastly.net/image/product/master/950674e0-f7f2-4611-a23d-44db95cf47c9" alt="Cuts Paper and is Smashed by Rock"style="width:100%;height:33.3%;"></div>
+    </div>
     <script>
         var pOneRck = 0;
         var pOnePpr = 0;
@@ -109,16 +134,17 @@
                 document.getElementById("titleOverlay").style.width = "0";
                 pOneScore = 0;
                 pTwoScore = 0;
+                document.getElementById("txtBox").innerHTML = "Let's go!"
             } else {
                 triggerTitleOverlay();
             }
         };
         var playerOneVictory = function() {
-            window.alert("Your score is " + pOneScore + ". The opponent's score is " + pTwoScore + ". You won!");
+            document.getElementById("txtBox2").innerHTML = "Your score is " + pOneScore + ". The opponent's score is " + pTwoScore + ". You won!";
             clickToStartNewGame();
         };
         var playerTwoVictory = function() {
-            window.alert("Your score is " + pOneScore + ". The opponent's score is " + pTwoScore + ". You lost!");
+            document.getElementById("txtBox2").innerHTML = "Your score is " + pOneScore + ". The opponent's score is " + pTwoScore + ". You lost!";
             clickToStartNewGame();
 
         };
@@ -143,15 +169,15 @@
                 pOneWin = 0;
                 pTwoWin = 0;
                 console.log("you both chose rock");
-                window.alert("You both chose Rock! How about something a little less hard...");
+                document.getElementById("txtBox").innerHTML = "You both chose Rock! How about something a little less hard...";
             } else if (pOneRck == 1 && pTwoPpr == 1) {
                 pTwoWin = 1;
                 console.log("pTwo chose paper, you lose this round");
-                window.alert("Rock is covered by Paper, you lose this round!");
+                document.getElementById("txtBox").innerHTML = "Rock is covered by Paper, you lose this round!";
             } else if (pOneRck == 1 && pTwoSzr == 1) {
                 pOneWin = 1;
                 console.log("pTwo chose scissors, you win this round");
-                window.alert("Rock smashes Scissors, you win this round!");
+                document.getElementById("txtBox").innerHTML = "Rock smashes Scissors, you win this round!";
             } else {
                 console.log("not rock " + pOneScore + ", " + pTwoScore)
             }
@@ -159,16 +185,16 @@
             if (pOnePpr == 1 && pTwoRck == 1) {
                 pOneWin = 1;
                 console.log("pTwo chose rock, you win this round");
-                window.alert("Paper covers Rock, you win this round!");
+                document.getElementById("txtBox").innerHTML = "Paper covers Rock, you win this round!";
             } else if (pOnePpr == 1 && pTwoPpr == 1) {
                 pOneWin = 0;
                 pTwoWin = 0;
                 console.log("you both chose paper");
-                window.alert("You both chose paper! Let's skip this page...");
+                document.getElementById("txtBox").innerHTML = "You both chose paper! Let's skip this page...";
             } else if (pOnePpr == 1 && pTwoSzr == 1) {
                 pTwoWin = 1;
                 console.log("pTwo chose scissors, you lose this round");
-                window.alert("Paper is cut by Scissors, you lose this round!");
+                document.getElementById("txtBox").innerHTML = "Paper is cut by Scissors, you lose this round!";
             } else {
                 console.log("not paper " + pOneScore + ", " + pTwoScore)
             }
@@ -176,16 +202,16 @@
             if (pOneSzr == 1 && pTwoRck == 1) {
                 pTwoWin = 1;
                 console.log("pTwo chose rock, you lose this round");
-                window.alert("Scissors is smashed by Rock, you lose this round!");
+                document.getElementById("txtBox").innerHTML = "Scissors is smashed by Rock, you lose this round!";
             } else if (pOneSzr == 1 && pTwoPpr == 1) {
                 pOneWin = 1;
                 console.log("pTwo chose paper, you win this round");
-                window.alert("Scissors cuts paper, you win this round!");
+                document.getElementById("txtBox").innerHTML = "Scissors cuts paper, you win this round!";
             } else if (pOneSzr == 1 && pTwoSzr == 1) {
                 pOneWin = 0;
                 pTwoWin = 0;
                 console.log("you both chose scissors");
-                window.alert("You both chose Scissors! Let's take a short cut...");
+                document.getElementById("txtBox").innerHTML = "You both chose Scissors! Let's take a short cut...";
             } else {
                 console.log("not scissors " + pOneScore + ", " + pTwoScore)
             }
@@ -202,7 +228,7 @@
                 pTwoWin = 0;
                 console.log("pTwoWin, their score is " + pTwoScore + ", your score is " + pOneScore)
             }
-            window.alert("Your score is " + pOneScore + ". The opponent's score is " + pTwoScore + ".");
+            document.getElementById("txtBox2").innerHTML = "Your score is " + pOneScore + ". The opponent's score is " + pTwoScore + ".";
             pOneRck = null;
             pOnePpr = null;
             pOneSzr = null;
@@ -241,5 +267,4 @@
         });
     </script>
 </body>
-
 </html>
