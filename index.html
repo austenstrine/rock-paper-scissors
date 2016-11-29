@@ -49,8 +49,9 @@
           top: 0;
           background-color: rgb(0, 35, 35);
           overflow-x: hidden;
-          transition: 0.05s;
+          transition: 0s;
         }
+
 
         .nGInnerOverlay {
           display: block;
@@ -59,12 +60,66 @@
           bottom: 4px;
           right: 4px;
           left: 4px;
-          height: calc(100% - 8px);
+          height: calc(50% - 8px);
           width: calc(100% - 8px);
           background-color: rgb(0, 55, 55);
           z-index: 21;
         }
 
+
+        .scoreOverlay{
+          height: 0;
+          width: 100%;
+          position: fixed;
+          z-index: 15;
+          top: 0;
+          background-color: rgb(0, 35, 35);
+          overflow-x: hidden;
+          transition: 0s;
+          text-align: center;
+        }
+        .okScore {
+            position: absolute;
+            float: left;
+            bottom:0;
+            width: calc(100% - 6vmin - 6px);
+            height: calc(5% - 6px);
+            margin: 0px;
+            padding: 3vmin;
+            padding-bottom: 6vmin;
+            border-style: outset;
+            border-width: 3px;
+            border-radius: 12px;
+            border-color: rgb(45, 100, 100);
+            border-top-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+            background-color: rgb(10, 65, 65);
+            color: inherit;
+            text-shadow: inherit;
+            text-align: center;
+            font-family: inherit;
+            font-size: 4.75vmin;
+            letter-spacing: inherit;
+        }
+
+        .scoreTxt{
+          position: absolute;
+          top: 4px;
+          right: 4px;
+          left: 4px;
+          width: calc(100% - 18px);
+          height: calc(95% - 9vmin - 18px);
+          padding: 4px;
+          text-align: center;
+          font-size: 10vmin;
+          border-width: 1px;
+          border-style: outset;
+          border-radius: 5px;
+          border-color: rgb(45, 100, 100);
+          background-color: rgb(10, 65, 65);
+          font-family: inherit;
+          letter-spacing: inherit;
+        }
         .confirmYesButton{
           position: absolute;
           float: none;
@@ -178,12 +233,16 @@
             font-family: inherit;
             letter-spacing: inherit;
         }
+
     </style>
 </head>
 
 <body>
     <div id="titleOverlay" class="overlay">
         <div><button type="button" onclick="clickToStartNewGame()">Start New Game!</button></div>
+    </div>
+    <div class="scoreOverlay" id="scoreOverlay"><div class="scoreTxt" id="scoreTxt">Something went wrong!</div>
+      <div class="okScore" id="okScore">OK</div>
     </div>
     <div id="newGameOverlay" class="nGOverlay">
         <div class="nGInnerOverlay">
@@ -197,9 +256,9 @@
         <div class="txtBox" id="txtBox">Begin by clicking any of the buttons below!</div>
     </div>
     <div class="buttonContainer">
-        <div class="button" id="rck">Rock<img src="http://llerrah.com/images/large_rock_in_grass_lg_clr_me.gif" alt="Smashes Scissors and is Covered by Paper"style="width:100%;height:50%;"></div>
-        <div class="button" id="ppr">Paper<img src="http://img06.deviantart.net/5b4a/i/2012/284/b/a/old_paper_texture_unsigned_by_meridiann-d5hh9a2.png" alt="Covers Rock and is Cut by Scissors"style="width:100%;height:50%;"></div>
-        <div class="button" id="szr">Scissors<img src="https://chairish-prod.global.ssl.fastly.net/image/product/master/950674e0-f7f2-4611-a23d-44db95cf47c9" alt="Cuts Paper and is Smashed by Rock"style="width:100%;height:50%;"></div>
+        <div class="button" id="rck"> Rock <img src="http://llerrah.com/images/large_rock_in_grass_lg_clr_me.gif" alt="Smashes Scissors and is Covered by Paper"style="width:33vmin;height:16vmin;"></div>
+        <div class="button" id="ppr"> Paper <img src="http://img06.deviantart.net/5b4a/i/2012/284/b/a/old_paper_texture_unsigned_by_meridiann-d5hh9a2.png" alt="Covers Rock and is Cut by Scissors"style="width:30vmin;height:15vmin;"></div>
+        <div class="button" id="szr">Scissors<img src="https://chairish-prod.global.ssl.fastly.net/image/product/master/950674e0-f7f2-4611-a23d-44db95cf47c9" alt="Cuts Paper and is Smashed by Rock"style="width:24.5vmin;height:12.25vmin;"></div>
     </div>
     <script>
         var pOneRck = 0;
@@ -217,7 +276,7 @@
             document.getElementById("newGameOverlay").style.height = "0";
         };
         var clickToStartNewGame = function() {
-            document.getElementById("newGameOverlay").style.height = "50%";
+            document.getElementById("newGameOverlay").style.height = "100%";
           };
         var confirmYes = function(){
           document.getElementById("newGameOverlay").style.height = "0";
@@ -232,12 +291,16 @@
 
         var playerOneVictory = function() {
             document.getElementById("txtBox2").innerHTML = "Your score is " + pOneScore + ". The opponent's score is " + pTwoScore + ". You won!";
-            clickToStartNewGame();
+            document.getElementById("scoreTxt").innerHTML = "Your score is " + pOneScore + ". The opponent's score is " + pTwoScore + ". You won!";
+            scoreOverlayTrigger();
         };
         var playerTwoVictory = function() {
             document.getElementById("txtBox2").innerHTML = "Your score is " + pOneScore + ". The opponent's score is " + pTwoScore + ". You lost!";
-            clickToStartNewGame();
-
+            document.getElementById("scoreTxt").innerHTML = "Your score is " + pOneScore + ". The opponent's score is " + pTwoScore + ". You won!";
+            scoreOverlayTrigger();
+        };
+        var scoreOverlayTrigger = function() {
+          document.getElementById("scoreOverlay").style.height = "100%";
         };
         var newRound = function() {
             var pTwoCompute = function() {
@@ -337,6 +400,7 @@
         var rockButton = document.getElementById("rck");
         var paperButton = document.getElementById("ppr");
         var scissorsButton = document.getElementById("szr");
+        var okScore = document.getElementById("okScore");
         yesNewGame.addEventListener("click", function() {
           confirmYes();
         });
@@ -363,6 +427,10 @@
             pOneSzr = 0;
             console.log("pOneRck");
             newRound();
+        });
+        okScore.addEventListener("click", function() {
+            document.getElementById("scoreOverlay").style.height = "0";
+            clickToStartNewGame();
         });
     </script>
 </body>
