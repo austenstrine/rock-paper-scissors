@@ -129,7 +129,7 @@
           height: calc(10% - 6px);
           margin: 0px;
           padding: 3vmin;
-          padding-bottom: 6vmin;
+          padding-bottom: 12vmin;
           border-style: outset;
           border-width: 3px;
           border-radius: 12px;
@@ -153,7 +153,7 @@
           height: calc(10% - 6px);
           margin: 0px;
           padding: 3vmin;
-          padding-bottom: 6vmin;
+          padding-bottom: 12vmin;
           border-style: outset;
           border-width: 3px;
           border-radius: 12px;
@@ -246,7 +246,7 @@
     </div>
     <div id="newGameOverlay" class="nGOverlay">
         <div class="nGInnerOverlay">
-          <div class="newGameTxt">New Game?</div>
+          <div class="newGameTxt" id="newGameTxt">New Game?</div>
           <div class="confirmYesButton" id="yGame">Yes</div>
           <div class="confirmNoButton" id="nGame">No</div>
         </div>
@@ -261,6 +261,8 @@
         <div class="button" id="szr">Scissors<img src="https://chairish-prod.global.ssl.fastly.net/image/product/master/950674e0-f7f2-4611-a23d-44db95cf47c9" alt="Cuts Paper and is Smashed by Rock"style="width:24.5vmin;height:12.25vmin;"></div>
     </div>
     <script>
+        var pOneTotal = 0;
+        var pTwoTotal = 0;
         var pOneRck = 0;
         var pOnePpr = 0;
         var pOneSzr = 0;
@@ -271,6 +273,7 @@
         var pTwoSzr = 0;
         var pTwoWin = 0;
         var pTwoScore = 0;
+        var firstGame = 0;
         var triggerTitleOverlay = function() {
             document.getElementById("titleOverlay").style.width = "100%";
             document.getElementById("newGameOverlay").style.height = "0";
@@ -281,23 +284,42 @@
         var confirmYes = function(){
           document.getElementById("newGameOverlay").style.height = "0";
           document.getElementById("titleOverlay").style.width = "0";
-          document.getElementById("txtBox").innerHTML = "Let's go!"
+          document.getElementById("txtBox").innerHTML = "Let's go!";
           pOneScore = 0;
           pTwoScore = 0;
+          if (firstGame == 1){
+            document.getElementById("txtBox2").innerHTML = "You've won " + pOneTotal + " rounds. Your opponent has won " + pTwoTotal + ". Good luck!";
+          } else {
+            document.getElementById("txtBox2").innerHTML = "No score yet!";
+          }
         };
         var confirmNo = function(){
           triggerTitleOverlay();
+          document.getElementById("newGameTxt").innerHTML = "New Game?";
+          document.getElementById('yGame').innerHTML = "Yes";
+          document.getElementById('nGame').innerHTML = "No";
+          pOneTotal = 0;
+          pTwoTotal = 0;
+          firstGame = 0;
         };
 
         var playerOneVictory = function() {
-            document.getElementById("txtBox2").innerHTML = "Your score is " + pOneScore + ". The opponent's score is " + pTwoScore + ". You won!";
-            document.getElementById("scoreTxt").innerHTML = "Your score is " + pOneScore + ". The opponent's score is " + pTwoScore + ". You won!";
-            scoreOverlayTrigger();
+            pOneTotal = pOneTotal+1;
+            document.getElementById('yGame').innerHTML = "New Round";
+            document.getElementById('nGame').innerHTML = "Title Menu";
+            document.getElementById("newGameTxt").innerHTML = "You won " + pOneScore + " to " + pTwoScore + "!";
+            clickToStartNewGame();
+            console.log(pTwoTotal+" p2Rounds, " + pOneTotal + "p1Rounds.");
+            firstGame = 1;
         };
         var playerTwoVictory = function() {
-            document.getElementById("txtBox2").innerHTML = "Your score is " + pOneScore + ". The opponent's score is " + pTwoScore + ". You lost!";
-            document.getElementById("scoreTxt").innerHTML = "Your score is " + pOneScore + ". The opponent's score is " + pTwoScore + ". You won!";
-            scoreOverlayTrigger();
+            pTwoTotal = pTwoTotal+1;
+            document.getElementById('yGame').innerHTML = "New Round";
+            document.getElementById('nGame').innerHTML = "Title Menu";
+            document.getElementById("newGameTxt").innerHTML = "You lost " + pOneScore + " to " + pTwoScore + "!";
+            clickToStartNewGame();
+            console.log(pTwoTotal+" p2Rounds, " + pOneTotal + "p1Rounds.");
+            firstGame = 1;
         };
         var scoreOverlayTrigger = function() {
           document.getElementById("scoreOverlay").style.height = "100%";
