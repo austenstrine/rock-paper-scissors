@@ -23,7 +23,7 @@
             padding: 0px;
         }
 
-        .overlay {
+        .ovrly {
             height: 100%;
             width: 100%;
             position: fixed;
@@ -34,14 +34,14 @@
             transition: 0.20s;
         }
 
-        .overlay .closebtn {
+        .ovrly .closebtn {
             position: absolute;
             right: 25px;
             font-size: 36px;
             margin-left: 50px;
         }
 
-        .nGOverlay {
+        .nwGmPrmptClass {
           height: 0;
           width: 100%;
           position: fixed;
@@ -53,7 +53,7 @@
         }
 
 
-        .nGInnerOverlay {
+        .nwGmPrmptInnerClass {
           display: block;
           position: absolute;
           top: 4px;
@@ -65,62 +65,8 @@
           background-color: rgb(0, 55, 55);
           z-index: 21;
         }
-
-
-        .scoreOverlay{
-          height: 0;
-          width: 100%;
-          position: fixed;
-          z-index: 15;
-          top: 0;
-          background-color: rgb(0, 35, 35);
-          overflow-x: hidden;
-          transition: 0s;
-          text-align: center;
-        }
-        .okScore {
-            position: absolute;
-            float: left;
-            bottom:0;
-            width: calc(100% - 6vmin - 6px);
-            height: calc(5% - 6px);
-            margin: 0px;
-            padding: 3vmin;
-            padding-bottom: 6vmin;
-            border-style: outset;
-            border-width: 3px;
-            border-radius: 12px;
-            border-color: rgb(45, 100, 100);
-            border-top-left-radius: 0px;
-            border-bottom-right-radius: 0px;
-            background-color: rgb(10, 65, 65);
-            color: inherit;
-            text-shadow: inherit;
-            text-align: center;
-            font-family: inherit;
-            font-size: 4.75vmin;
-            letter-spacing: inherit;
-        }
-
-        .scoreTxt{
-          position: absolute;
-          top: 4px;
-          right: 4px;
-          left: 4px;
-          width: calc(100% - 18px);
-          height: calc(95% - 9vmin - 18px);
-          padding: 4px;
-          text-align: center;
-          font-size: 10vmin;
-          border-width: 1px;
-          border-style: outset;
-          border-radius: 5px;
-          border-color: rgb(45, 100, 100);
-          background-color: rgb(10, 65, 65);
-          font-family: inherit;
-          letter-spacing: inherit;
-        }
-        .confirmYesButton{
+        
+        .cnfrmYsBttn{
           position: absolute;
           float: none;
           left:20vmin;
@@ -144,7 +90,7 @@
           font-size: 4.75vmin;
           letter-spacing: inherit;
         }
-        .confirmNoButton{
+        .cnfrmNBttn{
           position: absolute;
           float: none;
           right:20vmin;
@@ -210,14 +156,14 @@
             letter-spacing: inherit;
         }
 
-        .txtBoxContainer {
+        .txtBxContainer {
             position: absolute;
             width: 100%;
             height: 25.5%;
             top: 0;
         }
 
-        .txtBox {
+        .txtBx {
             position: relative;
             float: left;
             width: calc(50% - 10px);
@@ -237,223 +183,192 @@
     </style>
 </head>
 
-<body>
-    <div id="titleOverlay" class="overlay">
-        <div><button type="button" onclick="clickToStartNewGame()">Start New Game!</button></div>
-    </div>
-    <div class="scoreOverlay" id="scoreOverlay"><div class="scoreTxt" id="scoreTxt">Something went wrong!</div>
-      <div class="okScore" id="okScore">OK</div>
-    </div>
-    <div id="newGameOverlay" class="nGOverlay">
-        <div class="nGInnerOverlay">
-          <div class="newGameTxt" id="newGameTxt">New Game?</div>
-          <div class="confirmYesButton" id="yGame">Yes</div>
-          <div class="confirmNoButton" id="nGame">No</div>
+<body onload="main()">
+    <div id="titleOverlay" class="ovrly">
+        <div>
+          <button type="button" id="ovrlyBttn">Start New Game!</button>
         </div>
-    </div>
-    <div class="txtBoxContainer">
-        <div class="txtBox" id="txtBox2">No score yet!</div>
-        <div class="txtBox" id="txtBox">Begin by clicking any of the buttons below!</div>
-    </div>
+    </div><!--end titleOverlay-->
+    
+    <div id="nwGmPrmptID" class="nwGmPrmptClass">
+        <div class="nwGmPrmptInnerClass">
+          <div class="newGameTxt" id="newGameTxt">New Game?</div>
+          <div class="cnfrmYsBttn" id="ysGm">Yes</div>
+          <div class="cnfrmNBttn" id="nGm">No</div>
+        </div><!--end nwGmPrmptInner-->
+    </div><!--end nwGmPrmpt-->
+    
+    <div class="txtBxContainer">
+        <div class="txtBx" id="txtBx2">No score yet!</div>
+        <div class="txtBx" id="txtBx">Begin by clicking any of the buttons below!</div>
+    </div><!--end txtBxContainer-->
+    
     <div class="buttonContainer">
-        <div class="button" id="rck"> Rock <img src="http://llerrah.com/images/large_rock_in_grass_lg_clr_me.gif" alt="Smashes Scissors and is Covered by Paper"style="width:33vmin;height:16vmin;"></div>
-        <div class="button" id="ppr"> Paper <img src="http://img06.deviantart.net/5b4a/i/2012/284/b/a/old_paper_texture_unsigned_by_meridiann-d5hh9a2.png" alt="Covers Rock and is Cut by Scissors"style="width:30vmin;height:15vmin;"></div>
-        <div class="button" id="szr">Scissors<img src="https://chairish-prod.global.ssl.fastly.net/image/product/master/950674e0-f7f2-4611-a23d-44db95cf47c9" alt="Cuts Paper and is Smashed by Rock"style="width:24.5vmin;height:12.25vmin;"></div>
-    </div>
+        <div class="button" id="rck"> Rock </div>
+        <div class="button" id="ppr"> Paper </div>
+        <div class="button" id="szr">Scissors</div>
+    </div><!--end buttonContainer-->
+    
     <script>
-        var pOneTotal = 0;
-        var pTwoTotal = 0;
-        var pOneRck = 0;
-        var pOnePpr = 0;
-        var pOneSzr = 0;
-        var pOneWin = 0;
-        var pOneScore = 0;
-        var pTwoRck = 0;
-        var pTwoPpr = 0;
-        var pTwoSzr = 0;
-        var pTwoWin = 0;
-        var pTwoScore = 0;
-        var firstGame = 0;
-        var triggerTitleOverlay = function() {
-            document.getElementById("titleOverlay").style.width = "100%";
-            document.getElementById("newGameOverlay").style.height = "0";
-        };
-        var clickToStartNewGame = function() {
-            document.getElementById("newGameOverlay").style.height = "100%";
-          };
-        var confirmYes = function(){
-          document.getElementById("newGameOverlay").style.height = "0";
-          document.getElementById("titleOverlay").style.width = "0";
-          document.getElementById("txtBox").innerHTML = "Let's go!";
-          pOneScore = 0;
-          pTwoScore = 0;
-          if (firstGame == 1){
-            document.getElementById("txtBox2").innerHTML = "You've won " + pOneTotal + " rounds. Your opponent has won " + pTwoTotal + ". Good luck!";
-          } else {
-            document.getElementById("txtBox2").innerHTML = "No score yet!";
-          }
-        };
-        var confirmNo = function(){
-          triggerTitleOverlay();
-          document.getElementById("newGameTxt").innerHTML = "New Game?";
-          document.getElementById('yGame').innerHTML = "Yes";
-          document.getElementById('nGame').innerHTML = "No";
-          pOneTotal = 0;
-          pTwoTotal = 0;
-          firstGame = 0;
-        };
-
-        var playerOneVictory = function() {
-            pOneTotal = pOneTotal+1;
-            document.getElementById('yGame').innerHTML = "New Round";
-            document.getElementById('nGame').innerHTML = "Title Menu";
-            document.getElementById("newGameTxt").innerHTML = "You won " + pOneScore + " to " + pTwoScore + "!";
-            clickToStartNewGame();
-            console.log(pTwoTotal+" p2Rounds, " + pOneTotal + "p1Rounds.");
-            firstGame = 1;
-        };
-        var playerTwoVictory = function() {
-            pTwoTotal = pTwoTotal+1;
-            document.getElementById('yGame').innerHTML = "New Round";
-            document.getElementById('nGame').innerHTML = "Title Menu";
-            document.getElementById("newGameTxt").innerHTML = "You lost " + pOneScore + " to " + pTwoScore + "!";
-            clickToStartNewGame();
-            console.log(pTwoTotal+" p2Rounds, " + pOneTotal + "p1Rounds.");
-            firstGame = 1;
-        };
-        var scoreOverlayTrigger = function() {
-          document.getElementById("scoreOverlay").style.height = "100%";
-        };
-        var newRound = function() {
-            var pTwoCompute = function() {
-                var pTwoMath = Math.floor((Math.random() * 3) + 0);
-                console.log(pTwoMath + " first pass");
-                if (pTwoMath == 0) {
-                    pTwoRck = 1;
-                } else if (pTwoMath == 1) {
-                    pTwoPpr = 1;
-                } else if (pTwoMath == 2) {
-                    pTwoSzr = 1;
-                }
-                pTwoMath = null
-                console.log(pTwoMath + " second pass");
-            };
-
-            pTwoCompute();
-
-            if (pOneRck == 1 && pTwoRck == 1) {
-                pOneWin = 0;
-                pTwoWin = 0;
-                console.log("you both chose rock");
-                document.getElementById("txtBox").innerHTML = "You both chose Rock! How about something a little less hard...";
-            } else if (pOneRck == 1 && pTwoPpr == 1) {
-                pTwoWin = 1;
-                console.log("pTwo chose paper, you lose this round");
-                document.getElementById("txtBox").innerHTML = "Rock is covered by Paper, you lose this round!";
-            } else if (pOneRck == 1 && pTwoSzr == 1) {
-                pOneWin = 1;
-                console.log("pTwo chose scissors, you win this round");
-                document.getElementById("txtBox").innerHTML = "Rock smashes Scissors, you win this round!";
-            } else {
-                console.log("not rock " + pOneScore + ", " + pTwoScore)
-            }
-
-            if (pOnePpr == 1 && pTwoRck == 1) {
-                pOneWin = 1;
-                console.log("pTwo chose rock, you win this round");
-                document.getElementById("txtBox").innerHTML = "Paper covers Rock, you win this round!";
-            } else if (pOnePpr == 1 && pTwoPpr == 1) {
-                pOneWin = 0;
-                pTwoWin = 0;
-                console.log("you both chose paper");
-                document.getElementById("txtBox").innerHTML = "You both chose paper! Let's skip this page...";
-            } else if (pOnePpr == 1 && pTwoSzr == 1) {
-                pTwoWin = 1;
-                console.log("pTwo chose scissors, you lose this round");
-                document.getElementById("txtBox").innerHTML = "Paper is cut by Scissors, you lose this round!";
-            } else {
-                console.log("not paper " + pOneScore + ", " + pTwoScore)
-            }
-
-            if (pOneSzr == 1 && pTwoRck == 1) {
-                pTwoWin = 1;
-                console.log("pTwo chose rock, you lose this round");
-                document.getElementById("txtBox").innerHTML = "Scissors is smashed by Rock, you lose this round!";
-            } else if (pOneSzr == 1 && pTwoPpr == 1) {
-                pOneWin = 1;
-                console.log("pTwo chose paper, you win this round");
-                document.getElementById("txtBox").innerHTML = "Scissors cuts paper, you win this round!";
-            } else if (pOneSzr == 1 && pTwoSzr == 1) {
-                pOneWin = 0;
-                pTwoWin = 0;
-                console.log("you both chose scissors");
-                document.getElementById("txtBox").innerHTML = "You both chose Scissors! Let's take a short cut...";
-            } else {
-                console.log("not scissors " + pOneScore + ", " + pTwoScore)
-            }
-            //here the point from winning the round is added to the overall score, the updated score is declared,
-            //and both points earned and choices from the previous round are zeroed out
-            if (pOneWin == 1) {
-                pOneScore = pOneScore + pOneWin;
-                pOneWin = 0;
-                pTwoWin = 0;
-                console.log("pOneWin, your score is " + pOneScore + ", their score is " + pTwoScore)
-            } else if (pTwoWin == 1) {
-                pTwoScore = pTwoScore + pTwoWin;
-                pOneWin = 0;
-                pTwoWin = 0;
-                console.log("pTwoWin, their score is " + pTwoScore + ", your score is " + pOneScore)
-            }
-            document.getElementById("txtBox2").innerHTML = "Your score is " + pOneScore + ". The opponent's score is " + pTwoScore + ".";
-            pOneRck = null;
-            pOnePpr = null;
-            pOneSzr = null;
-            pTwoRck = null;
-            pTwoPpr = null;
-            pTwoSzr = null;
-            if (pOneScore == 7) {
-                playerOneVictory();
-            } else if (pTwoScore == 7) {
-                playerTwoVictory();
-            }
-        };
-        var yesNewGame = document.getElementById("yGame");
-        var noNewGame = document.getElementById("nGame");
+      var main = function(){
+        var overlayButton = document.getElementById("ovrlyBttn");
+        var yesButton = document.getElementById("ysGm");
+        var noButton = document.getElementById("nGm");
         var rockButton = document.getElementById("rck");
         var paperButton = document.getElementById("ppr");
         var scissorsButton = document.getElementById("szr");
         var okScore = document.getElementById("okScore");
-        yesNewGame.addEventListener("click", function() {
-          confirmYes();
-        });
-        noNewGame.addEventListener("click", function() {
-          confirmNo();
-        });
-        scissorsButton.addEventListener("click", function() {
-            pOneRck = 0;
-            pOnePpr = 0;
-            pOneSzr = 1;
-            console.log("pOneSzr");
-            newRound();
-        });
-        paperButton.addEventListener("click", function() {
-            pOneRck = 0;
-            pOnePpr = 1;
-            pOneSzr = 0;
-            console.log("pOnePpr");
-            newRound();
-        });
-        rockButton.addEventListener("click", function() {
-            pOneRck = 1;
-            pOnePpr = 0;
-            pOneSzr = 0;
-            console.log("pOneRck");
-            newRound();
-        });
-        okScore.addEventListener("click", function() {
-            document.getElementById("scoreOverlay").style.height = "0";
-            clickToStartNewGame();
-        });
+        var scores = {pOne: 0, pTwo: 0};
+        var wins = {pOne:0, pTwo:0};
+        var choice = {pOne: null, pTwo: null};
+        var total = {games: 0};
+        
+        overlayButton.addEventListener("click", function()
+        { openNewGamePrompt();
+        }  );//end event listener
+
+
+        yesButton.addEventListener("click", function()
+        { confirmYes(scores, wins, total);
+        }  );//end event listener
+        
+        noButton.addEventListener("click", function()
+        { confirmNo(wins, total);
+        }  );//end event listener
+        
+        
+        rockButton.addEventListener("click", function()
+        { playerTwoCompute(choice);
+          playerOneChoosesRock(scores, choice);
+          checkForVictory(scores, wins, total);
+        }  );//end event listener
+        
+        paperButton.addEventListener("click", function()
+        { playerTwoCompute(choice);
+          playerOneChoosesPaper(scores, choice);
+          checkForVictory(scores, wins, total);
+        }  );//end event listener
+        
+        scissorsButton.addEventListener("click", function()
+        { playerTwoCompute(choice);
+          playerOneChoosesScissors(scores, choice);
+          checkForVictory(scores, wins, total);
+        }  );//end event listener
+        
+      };//end main function
+      
+      
+      var openTitleOverlay = function() 
+      { document.getElementById("titleOverlay").style.width = "100%";
+      };//end openTitleOverlay
+      
+      var closeTitleOverlay = function() 
+      { document.getElementById("titleOverlay").style.width = "0";
+      };//end openTitleOverlay
+      
+      var openNewGamePrompt = function() 
+      { document.getElementById("nwGmPrmptID").style.height = "100%";
+      };//end openNewGamePrompt
+      
+      var closeNewGamePrompt = function()
+      { document.getElementById("nwGmPrmptID").style.height = "0";
+      };
+      
+      
+      var confirmYes = function(scores, wins, total)
+      { closeNewGamePrompt();
+        closeTitleOverlay();
+        document.getElementById("txtBx").innerHTML = "Let's go!";//resets txt in the round display
+        scores.pOne = 0;//resets score
+        scores.pTwo = 0;//  "    " 
+          if (total.games != 1)//displays number of rounds won if not the first round.
+          { document.getElementById("txtBx2").innerHTML = "No score yet!";
+          }
+          else
+          { document.getElementById("txtBx2").innerHTML = "You've won " + wins.pOne + " rounds. Your opponent has won " + wins.pTwo + ". Good luck!";
+          }//end if
+      };//end confirmYes
+      
+      var confirmNo = function(wins, total)
+      { closeNewGamePrompt();
+        openTitleOverlay();
+        document.getElementById("newGameTxt").innerHTML = "New Game?";
+        document.getElementById('ysGm').innerHTML = "Yes";
+        document.getElementById('nGm').innerHTML = "No";
+        wins.pOne = 0;
+        wins.pTwo = 0;
+        total.games = 0;
+      };//end confirmNo
+        
+        
+      var playerTwoCompute = function(choice)        //0 is rock, 1 is paper, 2 is scissors. Making a function in case I want to
+      { choice.pTwo = Math.floor((Math.random() * 3) + 0); //ask for p2 input in a later version. Would use event listeners?
+      };
+      
+      
+      var playerOneChoosesRock = function (scores, choice)
+      {   if (choice.pTwo == 0)       //rock/rock
+          { document.getElementById("txtBx").innerHTML = "You both chose Rock! How about something a little less hard...";
+          } 
+          else if (choice.pTwo == 1)  //rock/paper
+          { scores.pTwo += 1;
+            document.getElementById("txtBx").innerHTML = "Rock is covered by Paper, you lose this round!";
+          } 
+          else                       //rock/scissors
+          { scores.pOne += 1;
+            document.getElementById("txtBx").innerHTML = "Rock smashes Scissors, you win this round!";
+          }
+      }; //end playerOneChoosesRock
+            
+      var playerOneChoosesPaper = function(scores, choice) 
+      {   if (choice.pTwo == 0)      //paper/rock
+          { scores.pOne += 1;
+            document.getElementById("txtBx").innerHTML = "Paper covers Rock, you win this round!";
+          } 
+          else if (choice.pTwo == 1) //paper/paper
+          { document.getElementById("txtBx").innerHTML = "You both chose paper! Let's skip this page...";
+          } 
+          else                      //paper/scissors
+          { scores.pTwo += 1;
+            document.getElementById("txtBx").innerHTML = "Paper is cut by Scissors, you lose this round!";
+          } 
+      }; //end playerOneChoosesPaper
+            
+      var playerOneChoosesScissors = function(scores, choice)
+      {   if (choice.pTwo == 0)       //scissors/rock
+          {  scores.pTwo += 1;
+             document.getElementById("txtBx").innerHTML = "Scissors is smashed by Rock, you lose this round!";
+          } 
+          else if (choice.pTwo == 1)  //scissors/paper
+          { scores.pOne += 1
+            document.getElementById("txtBx").innerHTML = "Scissors cuts paper, you win this round!";
+          } 
+          else                       //scissors/scissors
+          { document.getElementById("txtBx").innerHTML = "You both chose Scissors! Let's take a short cut...";
+          }
+      }; //end playerOneChoosesScissors
+      
+      
+      var checkForVictory = function(scores, wins, total)//swct
+      {   if (scores.pOne == 7 || scores.pTwo == 7) 
+          { total.games += 1;
+            document.getElementById('ysGm').innerHTML = "Round " + (total.games+1) + "?";
+            document.getElementById('nGm').innerHTML = "Exit";
+              if (scores.pOne > scores.pTwo) 
+              { wins.pOne += 1;
+                document.getElementById("newGameTxt").innerHTML = "You won " + scores.pOne + " to " + scores.pTwo + "!";
+              } 
+              else 
+              { wins.pTwo += 1;
+                document.getElementById("newGameTxt").innerHTML = "You lost " + scores.pOne + " to " + scores.pTwo + "!";
+              }//end inner if
+            openNewGamePrompt();
+          }
+          else 
+          { document.getElementById("txtBx2").innerHTML = "Your score is " + scores.pOne + ". The opponent's score is " + scores.pTwo + ".";
+          }//end outer if
+      };//end checkForVictory
+      
     </script>
-</body>
+  </body>
 </html>
