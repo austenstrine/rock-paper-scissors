@@ -17,12 +17,10 @@
             font-family: Tahoma, Tahoma, sans-serif;
             letter-spacing: 2px;
         }
-
         div {
             margin: 0px;
             padding: 0px;
         }
-
         .ovrly {
             height: 100%;
             width: 100%;
@@ -33,15 +31,13 @@
             overflow-x: hidden;
             transition: 0.20s;
         }
-
-        .ovrly .cls_btn {
+        .ovrly .closebtn {
             position: absolute;
             right: 25px;
             font-size: 36px;
             margin-left: 50px;
         }
-
-        .nw_gm_prmpt {
+        .nwGmPrmptClass {
           height: 0;
           width: 100%;
           position: fixed;
@@ -51,9 +47,7 @@
           overflow-x: hidden;
           transition: 0s;
         }
-
-
-        .nw_gm_prmpt_innr {
+        .nwGmPrmptInnerClass {
           display: block;
           position: absolute;
           top: 4px;
@@ -66,7 +60,7 @@
           z-index: 21;
         }
         
-        .cnfrm_ys_bttn{
+        .cnfrmYsBttn{
           position: absolute;
           float: none;
           left:20vmin;
@@ -90,7 +84,7 @@
           font-size: 4.75vmin;
           letter-spacing: inherit;
         }
-        .cnfrm_n_bttn{
+        .cnfrmNBttn{
           position: absolute;
           float: none;
           right:20vmin;
@@ -114,14 +108,12 @@
           font-size: 4.75vmin;
           letter-spacing: inherit;
         }
-
-        .nw_gm_txt{
+        .newGameTxt{
           text-align: center;
           text-shadow: inherit;
           font-size: 7vmin;
         }
-
-        .bttn_cntnr {
+        .buttonContainer {
             /*text-align: center;*/
             width: 100%;
             height: 70.5%;
@@ -132,8 +124,7 @@
             bottom: 0;
             position: absolute;
         }
-
-        .bttn,
+        .button,
         button {
             position: relative;
             float: left;
@@ -155,15 +146,13 @@
             font-size: 7vmin;
             letter-spacing: inherit;
         }
-
-        .txt_bx_cntnr {
+        .txtBxContainer {
             position: absolute;
             width: 100%;
             height: 25.5%;
             top: 0;
         }
-
-        .txt_bx {
+        .txtBx {
             position: relative;
             float: left;
             width: calc(50% - 10px);
@@ -179,34 +168,33 @@
             font-family: inherit;
             letter-spacing: inherit;
         }
-
     </style>
 </head>
 
 <body onload="main()">
-    <div id="ttlOvrly" class="ovrly">
+    <div id="titleOverlay" class="ovrly">
         <div>
           <button type="button" id="ovrlyBttn">Start New Game!</button>
         </div>
     </div><!--end titleOverlay-->
     
-    <div id="nwGmPrmpt" class="nw_gm_prmpt">
-        <div class="nw_gm_prmpt_innr">
-          <div class="nw_gm_txt" id="nwGmTxt">New Game?</div>
-          <div class="cnfrm_ys_bttn" id="ysGm">Yes</div>
-          <div class="cnfrm_n_bttn" id="nGm">No</div>
+    <div id="nwGmPrmptID" class="nwGmPrmptClass">
+        <div class="nwGmPrmptInnerClass">
+          <div class="newGameTxt" id="newGameTxt">New Game?</div>
+          <div class="cnfrmYsBttn" id="ysGm">Yes</div>
+          <div class="cnfrmNBttn" id="nGm">No</div>
         </div><!--end nwGmPrmptInner-->
     </div><!--end nwGmPrmpt-->
     
-    <div class="txt_bx_cntnr">
-        <div class="txt_bx" id="txtBx2">No score yet!</div>
-        <div class="txt_bx" id="txtBx">Begin by clicking any of the buttons below!</div>
-    </div><!--end txt_bx_cntnr-->
+    <div class="txtBxContainer">
+        <div class="txtBx" id="txtBx2">No score yet!</div>
+        <div class="txtBx" id="txtBx">Begin by clicking any of the buttons below!</div>
+    </div><!--end txtBxContainer-->
     
-    <div class="bttn_cntnr">
-        <div class="bttn" id="rck"> Rock </div>
-        <div class="bttn" id="ppr"> Paper </div>
-        <div class="bttn" id="szr">Scissors</div>
+    <div class="buttonContainer">
+        <div class="button" id="rck"> Rock </div>
+        <div class="button" id="ppr"> Paper </div>
+        <div class="button" id="szr">Scissors</div>
     </div><!--end buttonContainer-->
     
     <script>
@@ -217,6 +205,7 @@
         var rockButton = document.getElementById("rck");
         var paperButton = document.getElementById("ppr");
         var scissorsButton = document.getElementById("szr");
+        var okScore = document.getElementById("okScore");
         var scores = {pOne: 0, pTwo: 0};
         var wins = {pOne:0, pTwo:0};
         var choice = {pOne: null, pTwo: null};
@@ -225,8 +214,6 @@
         overlayButton.addEventListener("click", function()
         { openNewGamePrompt();
         }  );//end event listener
-
-
         yesButton.addEventListener("click", function()
         { confirmYes(scores, wins, total);
         }  );//end event listener
@@ -235,63 +222,42 @@
         { confirmNo(wins, total);
         }  );//end event listener
         
-          if (document.getElementById("ttlOvrly").style.width == "0" &&
-              document.getElementById("nwGmPrmpt").style.height == "0")
-          { rockButton.addEventListener("click", function()
-            { playerTwoCompute(choice);
-              playerOneChoosesRock(scores, choice);
-              checkForVictory(scores, wins, total);
-            }  );//end event listener
-            
-            paperButton.addEventListener("click", function()
-            { playerTwoCompute(choice);
-              playerOneChoosesPaper(scores, choice);
-              checkForVictory(scores, wins, total);
-            }  );//end event listener
-            
-            scissorsButton.addEventListener("click", function()
-            { playerTwoCompute(choice);
-              playerOneChoosesScissors(scores, choice);
-              checkForVictory(scores, wins, total);
-            }  );//end event listener
-          }
-          else
-          { rockButton.removeEventListener("click", function()
-            { playerTwoCompute(choice);
-              playerOneChoosesRock(scores, choice);
-              checkForVictory(scores, wins, total);
-            }  );//end event listener
-            
-            paperButton.removeEventListener("click", function()
-            { playerTwoCompute(choice);
-              playerOneChoosesPaper(scores, choice);
-              checkForVictory(scores, wins, total);
-            }  );//end event listener
-            
-            scissorsButton.removeEventListener("click", function()
-            { playerTwoCompute(choice);
-              playerOneChoosesScissors(scores, choice);
-              checkForVictory(scores, wins, total);
-            }  );//end event listener
-          } //end if 
+        
+        rockButton.addEventListener("click", function()
+        { playerTwoCompute(choice);
+          playerOneChoosesRock(scores, choice);
+          checkForVictory(scores, wins, total);
+        }  );//end event listener
+        
+        paperButton.addEventListener("click", function()
+        { playerTwoCompute(choice);
+          playerOneChoosesPaper(scores, choice);
+          checkForVictory(scores, wins, total);
+        }  );//end event listener
+        
+        scissorsButton.addEventListener("click", function()
+        { playerTwoCompute(choice);
+          playerOneChoosesScissors(scores, choice);
+          checkForVictory(scores, wins, total);
+        }  );//end event listener
         
       };//end main function
       
       
       var openTitleOverlay = function() 
-      { document.getElementById("ttlOvrly").style.width = "100%";
+      { document.getElementById("titleOverlay").style.width = "100%";
       };//end openTitleOverlay
       
       var closeTitleOverlay = function() 
-      { document.getElementById("ttlOvrly").style.width = "0";
+      { document.getElementById("titleOverlay").style.width = "0";
       };//end openTitleOverlay
       
       var openNewGamePrompt = function() 
-      { document.getElementById("nwGmPrmpt").style.height = "100%";
+      { document.getElementById("nwGmPrmptID").style.height = "100%";
       };//end openNewGamePrompt
       
       var closeNewGamePrompt = function()
-      { document.getElementById("nwGmPrmpt").style.height = "0";
+      { document.getElementById("nwGmPrmptID").style.height = "0";
       };
       
       
@@ -312,7 +278,7 @@
       var confirmNo = function(wins, total)
       { closeNewGamePrompt();
         openTitleOverlay();
-        document.getElementById("nwGmTxt").innerHTML = "New Game?";
+        document.getElementById("newGameTxt").innerHTML = "New Game?";
         document.getElementById('ysGm').innerHTML = "Yes";
         document.getElementById('nGm').innerHTML = "No";
         wins.pOne = 0;
@@ -376,11 +342,11 @@
             document.getElementById('nGm').innerHTML = "Exit";
               if (scores.pOne > scores.pTwo) 
               { wins.pOne += 1;
-                document.getElementById("nwGmTxt").innerHTML = "You won " + scores.pOne + " to " + scores.pTwo + "!";
+                document.getElementById("newGameTxt").innerHTML = "You won " + scores.pOne + " to " + scores.pTwo + "!";
               } 
               else 
               { wins.pTwo += 1;
-                document.getElementById("nwGmTxt").innerHTML = "You lost " + scores.pOne + " to " + scores.pTwo + "!";
+                document.getElementById("newGameTxt").innerHTML = "You lost " + scores.pOne + " to " + scores.pTwo + "!";
               }//end inner if
             openNewGamePrompt();
           }
