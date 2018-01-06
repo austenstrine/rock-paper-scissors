@@ -21,7 +21,28 @@
             margin: 0px;
             padding: 0px;
         }
-        .ovrly {
+        button {
+            position: relative;
+            float: left;
+            width: calc(33.33% - 18px);
+            height: calc(100% - 18px);
+            margin: 0px;
+            padding: 6px;
+            border-style: outset;
+            border-width: 3px;
+            border-radius: 12px;
+            border-color: rgb(45, 100, 100);
+            border-top-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+            background-color: rgb(10, 65, 65);
+            color: inherit;
+            text-shadow: inherit;
+            text-align: center;
+            font-family: inherit;
+            font-size: 7vmin;
+            letter-spacing: inherit;
+        }
+        .Body-TitleOverlay {
             height: 100%;
             width: 100%;
             position: fixed;
@@ -31,13 +52,13 @@
             overflow-x: hidden;
             transition: 0.20s;
         }
-        .ovrly .closebtn {
+        .Body-TitleOverlay {
             position: absolute;
             right: 25px;
             font-size: 36px;
             margin-left: 50px;
         }
-        .nwGmPrmptClass {
+        .Body-NewGamePrompt {
           height: 0;
           width: 100%;
           position: fixed;
@@ -47,7 +68,7 @@
           overflow-x: hidden;
           transition: 0s;
         }
-        .nwGmPrmptInnerClass {
+        .Body-NewGamePrompt-Inner {
           display: block;
           position: absolute;
           top: 4px;
@@ -60,7 +81,7 @@
           z-index: 21;
         }
         
-        .cnfrmYsBttn{
+        .Body-NewGamePrompt-Inner-YesButton{
           position: absolute;
           float: none;
           left:20vmin;
@@ -84,7 +105,7 @@
           font-size: 4.75vmin;
           letter-spacing: inherit;
         }
-        .cnfrmNBttn{
+        .Body-NewGamePrompt-Inner-NoButton{
           position: absolute;
           float: none;
           right:20vmin;
@@ -108,12 +129,12 @@
           font-size: 4.75vmin;
           letter-spacing: inherit;
         }
-        .newGameTxt{
+        .Body-NewGamePrompt-Inner-TextContent{
           text-align: center;
           text-shadow: inherit;
           font-size: 7vmin;
         }
-        .buttonContainer {
+        .Body-ButtonsDiv {
             /*text-align: center;*/
             width: 100%;
             height: 70.5%;
@@ -124,35 +145,13 @@
             bottom: 0;
             position: absolute;
         }
-        .button,
-        button {
-            position: relative;
-            float: left;
-            width: calc(33.33% - 18px);
-            height: calc(100% - 18px);
-            margin: 0px;
-            padding: 6px;
-            border-style: outset;
-            border-width: 3px;
-            border-radius: 12px;
-            border-color: rgb(45, 100, 100);
-            border-top-left-radius: 0px;
-            border-bottom-right-radius: 0px;
-            background-color: rgb(10, 65, 65);
-            color: inherit;
-            text-shadow: inherit;
-            text-align: center;
-            font-family: inherit;
-            font-size: 7vmin;
-            letter-spacing: inherit;
-        }
-        .txtBxContainer {
+        .Body-TextDiv {
             position: absolute;
             width: 100%;
             height: 25.5%;
             top: 0;
         }
-        .txtBx {
+        .Body-TextDiv-TextBoxes {
             position: relative;
             float: left;
             width: calc(50% - 10px);
@@ -172,40 +171,40 @@
 </head>
 
 <body onload="main()">
-    <div id="titleOverlay" class="ovrly">
+    <div id="Body-TitleOverlayID" class="Body-TitleOverlay">
         <div>
-          <button type="button" id="ovrlyBttn">Start New Game!</button>
+          <button id="Body-TitleOverlay-ButtonID">Start New Game!</button>
         </div>
-    </div><!--end titleOverlay-->
+    </div><!--end Body-TitleOverlay-->
     
-    <div id="nwGmPrmptID" class="nwGmPrmptClass">
-        <div class="nwGmPrmptInnerClass">
-          <div class="newGameTxt" id="newGameTxt">New Game?</div>
-          <div class="cnfrmYsBttn" id="ysGm">Yes</div>
-          <div class="cnfrmNBttn" id="nGm">No</div>
-        </div><!--end nwGmPrmptInner-->
-    </div><!--end nwGmPrmpt-->
+    <div id="Body-NewGamePromptID" class="Body-NewGamePrompt">
+        <div class="Body-NewGamePrompt-Inner">
+          <div class="Body-NewGamePrompt-Inner-TextContent" id="Body-NewGamePrompt-Inner-TextContentID">New Game?</div>
+          <div class="Body-NewGamePrompt-Inner-YesButton" id="Body-NewGamePrompt-Inner-YesButtonID">Yes</div>
+          <div class="Body-NewGamePrompt-Inner-NoButton" id="Body-NewGamePrompt-Inner-NoButtonID">No</div>
+        </div><!--end Body-NewGamePrompt-Inner-->
+    </div><!--end Body-NewGamePrompt-->
     
-    <div class="txtBxContainer">
-        <div class="txtBx" id="txtBx2">No score yet!</div>
-        <div class="txtBx" id="txtBx">Begin by clicking any of the buttons below!</div>
-    </div><!--end txtBxContainer-->
+    <div class="Body-TextDiv">
+        <div class="Body-TextDiv-TextBoxes" id="Body-TextDiv-TextBox2ID">No score yet!</div>
+        <div class="Body-TextDiv-TextBoxes" id="Body-TextDiv-TextBox1ID">Begin by clicking any of the buttons below!</div>
+    </div><!--end Body-TextDiv-->
     
-    <div class="buttonContainer">
-        <div class="button" id="rck"> Rock </div>
-        <div class="button" id="ppr"> Paper </div>
-        <div class="button" id="szr">Scissors</div>
-    </div><!--end buttonContainer-->
+    <div class="Body-ButtonsDiv">
+        <button id="Body-ButtonsDiv-RockButtonID"> Rock </button>
+        <button id="Body-ButtonsDiv-PaperButtonID"> Paper </button>
+        <button id="Body-ButtonsDiv-ScissorsButtonID">Scissors</button>
+    </div><!--end Body-ButtonsDiv-->
     
     <script>
       var main = function(){
-        var overlayButton = document.getElementById("ovrlyBttn");
-        var yesButton = document.getElementById("ysGm");
-        var noButton = document.getElementById("nGm");
-        var rockButton = document.getElementById("rck");
-        var paperButton = document.getElementById("ppr");
-        var scissorsButton = document.getElementById("szr");
-        var okScore = document.getElementById("okScore");
+        var overlayButton = document.getElementById("Body-TitleOverlay-ButtonID");
+        var yesButton = document.getElementById("Body-NewGamePrompt-Inner-YesButtonID");
+        var noButton = document.getElementById("Body-NewGamePrompt-Inner-NoButtonID");
+        var rockButton = document.getElementById("Body-ButtonsDiv-RockButtonID");
+        var paperButton = document.getElementById("Body-ButtonsDiv-PaperButtonID");
+        var scissorsButton = document.getElementById("Body-ButtonsDiv-ScissorsButtonID");
+        //var okScore = document.getElementById("okScore");
         var scores = {pOne: 0, pTwo: 0};
         var wins = {pOne:0, pTwo:0};
         var choice = {pOne: null, pTwo: null};
@@ -214,6 +213,7 @@
         overlayButton.addEventListener("click", function()
         { openNewGamePrompt();
         }  );//end event listener
+        
         yesButton.addEventListener("click", function()
         { confirmYes(scores, wins, total);
         }  );//end event listener
@@ -221,7 +221,6 @@
         noButton.addEventListener("click", function()
         { confirmNo(wins, total);
         }  );//end event listener
-        
         
         rockButton.addEventListener("click", function()
         { playerTwoCompute(choice);
@@ -245,42 +244,42 @@
       
       
       var openTitleOverlay = function() 
-      { document.getElementById("titleOverlay").style.width = "100%";
+      { document.getElementById("Body-TitleOverlayID").style.width = "100%";
       };//end openTitleOverlay
       
       var closeTitleOverlay = function() 
-      { document.getElementById("titleOverlay").style.width = "0";
+      { document.getElementById("Body-TitleOverlayID").style.width = "0";
       };//end openTitleOverlay
       
       var openNewGamePrompt = function() 
-      { document.getElementById("nwGmPrmptID").style.height = "100%";
+      { document.getElementById("Body-NewGamePromptID").style.height = "100%";
       };//end openNewGamePrompt
       
       var closeNewGamePrompt = function()
-      { document.getElementById("nwGmPrmptID").style.height = "0";
+      { document.getElementById("Body-NewGamePromptID").style.height = "0";
       };
       
       
       var confirmYes = function(scores, wins, total)
       { closeNewGamePrompt();
         closeTitleOverlay();
-        document.getElementById("txtBx").innerHTML = "Let's go!";//resets txt in the round display
+        document.getElementById("Body-TextDiv-TextBox1ID").innerHTML = "Let's go!";//resets txt in the round display
         scores.pOne = 0;//resets score
         scores.pTwo = 0;//  "    " 
           if (total.games != 1)//displays number of rounds won if not the first round.
-          { document.getElementById("txtBx2").innerHTML = "No score yet!";
+          { document.getElementById("Body-TextDiv-TextBox2ID").innerHTML = "No score yet!";
           }
           else
-          { document.getElementById("txtBx2").innerHTML = "You've won " + wins.pOne + " rounds. Your opponent has won " + wins.pTwo + ". Good luck!";
+          { document.getElementById("Body-TextDiv-TextBox2ID").innerHTML = "You've won " + wins.pOne + " rounds. Your opponent has won " + wins.pTwo + ". Good luck!";
           }//end if
       };//end confirmYes
       
       var confirmNo = function(wins, total)
       { closeNewGamePrompt();
         openTitleOverlay();
-        document.getElementById("newGameTxt").innerHTML = "New Game?";
-        document.getElementById('ysGm').innerHTML = "Yes";
-        document.getElementById('nGm').innerHTML = "No";
+        document.getElementById("Body-NewGamePrompt-Inner-TextContentID").innerHTML = "New Game?";
+        document.getElementById('Body-NewGamePrompt-Inner-YesButtonID').innerHTML = "Yes";
+        document.getElementById('Body-NewGamePrompt-Inner-NoButtonID').innerHTML = "No";
         wins.pOne = 0;
         wins.pTwo = 0;
         total.games = 0;
@@ -294,43 +293,43 @@
       
       var playerOneChoosesRock = function (scores, choice)
       {   if (choice.pTwo == 0)       //rock/rock
-          { document.getElementById("txtBx").innerHTML = "You both chose Rock! How about something a little less hard...";
+          { document.getElementById("Body-TextDiv-TextBox1ID").innerHTML = "You both chose Rock! How about something a little less hard...";
           } 
           else if (choice.pTwo == 1)  //rock/paper
           { scores.pTwo += 1;
-            document.getElementById("txtBx").innerHTML = "Rock is covered by Paper, you lose this round!";
+            document.getElementById("Body-TextDiv-TextBox1ID").innerHTML = "Rock is covered by Paper, you lose this round!";
           } 
           else                       //rock/scissors
           { scores.pOne += 1;
-            document.getElementById("txtBx").innerHTML = "Rock smashes Scissors, you win this round!";
+            document.getElementById("Body-TextDiv-TextBox1ID").innerHTML = "Rock smashes Scissors, you win this round!";
           }
       }; //end playerOneChoosesRock
             
       var playerOneChoosesPaper = function(scores, choice) 
       {   if (choice.pTwo == 0)      //paper/rock
           { scores.pOne += 1;
-            document.getElementById("txtBx").innerHTML = "Paper covers Rock, you win this round!";
+            document.getElementById("Body-TextDiv-TextBox1ID").innerHTML = "Paper covers Rock, you win this round!";
           } 
           else if (choice.pTwo == 1) //paper/paper
-          { document.getElementById("txtBx").innerHTML = "You both chose paper! Let's skip this page...";
+          { document.getElementById("Body-TextDiv-TextBox1ID").innerHTML = "You both chose paper! Let's skip this page...";
           } 
           else                      //paper/scissors
           { scores.pTwo += 1;
-            document.getElementById("txtBx").innerHTML = "Paper is cut by Scissors, you lose this round!";
+            document.getElementById("Body-TextDiv-TextBox1ID").innerHTML = "Paper is cut by Scissors, you lose this round!";
           } 
       }; //end playerOneChoosesPaper
             
       var playerOneChoosesScissors = function(scores, choice)
       {   if (choice.pTwo == 0)       //scissors/rock
           {  scores.pTwo += 1;
-             document.getElementById("txtBx").innerHTML = "Scissors is smashed by Rock, you lose this round!";
+             document.getElementById("Body-TextDiv-TextBox1ID").innerHTML = "Scissors is smashed by Rock, you lose this round!";
           } 
           else if (choice.pTwo == 1)  //scissors/paper
           { scores.pOne += 1
-            document.getElementById("txtBx").innerHTML = "Scissors cuts paper, you win this round!";
+            document.getElementById("Body-TextDiv-TextBox1ID").innerHTML = "Scissors cuts paper, you win this round!";
           } 
           else                       //scissors/scissors
-          { document.getElementById("txtBx").innerHTML = "You both chose Scissors! Let's take a short cut...";
+          { document.getElementById("Body-TextDiv-TextBox1ID").innerHTML = "You both chose Scissors! Let's take a short cut...";
           }
       }; //end playerOneChoosesScissors
       
@@ -338,20 +337,20 @@
       var checkForVictory = function(scores, wins, total)//swct
       {   if (scores.pOne == 7 || scores.pTwo == 7) 
           { total.games += 1;
-            document.getElementById('ysGm').innerHTML = "Round " + (total.games+1) + "?";
-            document.getElementById('nGm').innerHTML = "Exit";
+            document.getElementById('Body-NewGamePrompt-Inner-YesButtonID').innerHTML = "Round " + (total.games+1) + "?";
+            document.getElementById('Body-NewGamePrompt-Inner-NoButtonID').innerHTML = "Exit";
               if (scores.pOne > scores.pTwo) 
               { wins.pOne += 1;
-                document.getElementById("newGameTxt").innerHTML = "You won " + scores.pOne + " to " + scores.pTwo + "!";
+                document.getElementById("Body-NewGamePrompt-Inner-TextContentID").innerHTML = "You won " + scores.pOne + " to " + scores.pTwo + "!";
               } 
               else 
               { wins.pTwo += 1;
-                document.getElementById("newGameTxt").innerHTML = "You lost " + scores.pOne + " to " + scores.pTwo + "!";
+                document.getElementById("Body-NewGamePrompt-Inner-TextContentID").innerHTML = "You lost " + scores.pOne + " to " + scores.pTwo + "!";
               }//end inner if
             openNewGamePrompt();
           }
           else 
-          { document.getElementById("txtBx2").innerHTML = "Your score is " + scores.pOne + ". The opponent's score is " + scores.pTwo + ".";
+          { document.getElementById("Body-TextDiv-TextBox2ID").innerHTML = "Your score is " + scores.pOne + ". The opponent's score is " + scores.pTwo + ".";
           }//end outer if
       };//end checkForVictory
       
